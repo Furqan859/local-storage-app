@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+
 
 function App() {
+ 
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+  const handleSubmit = () => {
+  const userEmail = [];
+  localStorage.setItem("userEmail",JSON.stringify(email));
+  
+ 
+  const userPassword = [];
+  localStorage.setItem("userPassword",JSON.stringify(password));
+  console.log(userPassword,"userpassword");
+};
+  const handleUser = () => {
+     if(!email || !password){
+       alert("error")
+     }else{
+      alert(   JSON.parse(localStorage.getItem("userEmail")))
+      alert(   JSON.parse(localStorage.getItem("userPassword")))
+     }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <input type="email" onChange={(e)=>setEmail(e.target.value)} />
+     <input type="password" onChange={(e)=>setPassword(e.target.value)} />
+     <button onClick={handleSubmit}>signup</button>
+
+     <button onClick={handleUser}>Check user</button>
+     
     </div>
   );
 }
